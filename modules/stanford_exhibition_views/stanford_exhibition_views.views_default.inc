@@ -30,7 +30,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['style_plugin'] = 'views_aggregator';
+  $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
     'nid' => 'nid',
@@ -45,14 +45,6 @@ function stanford_exhibition_views_views_default_views() {
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'nid' => array(
       'sortable' => 0,
@@ -60,46 +52,17 @@ function stanford_exhibition_views_views_default_views() {
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_s_exh_date' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_s_exh_date_1' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
-  );
-  $handler->display->display_options['style_options']['totals_per_page'] = '1';
-  $handler->display->display_options['style_options']['totals_row_position'] = array(
-    1 => 0,
-    2 => '2',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -207,7 +170,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['title'] = 'Upcoming Exhibitions';
   $handler->display->display_options['display_description'] = 'Upcoming Exhibitions';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'views_aggregator';
+  $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'title' => 'title',
     'nid' => 'nid',
@@ -222,14 +185,6 @@ function stanford_exhibition_views_views_default_views() {
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'nid' => array(
       'sortable' => 0,
@@ -237,46 +192,17 @@ function stanford_exhibition_views_views_default_views() {
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_s_exh_date' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
     'field_s_exh_date_1' => array(
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
-      'has_aggr' => 0,
-      'aggr' => array(
-        'views_aggregator_first' => 'views_aggregator_first',
-      ),
-      'aggr_par' => '',
-      'has_aggr_column' => 0,
-      'aggr_column' => 'views_aggregator_sum',
-      'aggr_par_column' => '',
     ),
-  );
-  $handler->display->display_options['style_options']['totals_per_page'] = '1';
-  $handler->display->display_options['style_options']['totals_row_position'] = array(
-    1 => 0,
-    2 => '2',
   );
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
@@ -366,7 +292,6 @@ function stanford_exhibition_views_views_default_views() {
   );
   $handler->display->display_options['filters']['field_s_exh_tags_tid']['vocabulary'] = 'tags';
   $handler->display->display_options['path'] = 'exhibitions/history';
-
   $export['stanford_exhibitions'] = $view;
 
   return $export;
