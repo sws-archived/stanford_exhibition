@@ -77,8 +77,8 @@ function stanford_exhibition_feeds_importer_default() {
         'exp' => array(
           'errors' => 1,
           'debug' => array(
-            'xpathparser:4' => 'xpathparser:4',
-            'xpathparser:8' => 'xpathparser:8',
+            'xpathparser:4' => 0,
+            'xpathparser:8' => 0,
             'context' => 0,
             'xpathparser:6' => 0,
             'xpathparser:3' => 0,
