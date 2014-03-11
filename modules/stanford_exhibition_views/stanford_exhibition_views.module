@@ -21,18 +21,28 @@ function stanford_exhibition_views_views_query_alter(&$view, &$query) {
       $view->query->having[1]['conditions'][1]['value'][':field_data_field_s_exh_date_field_s_exh_date_value2'] = strtotime('now');
       $query = $view->query;
     }
-
     // The upcoming exhibitions min start date is in the future.
-    if ($view->current_display == "upcoming_exhibitions") {
+    else if ($view->current_display == "upcoming_exhibitions") {
       // Alter the filters to use the current time instead of a set value.
       $view->query->having[1]['conditions'][0]['value'][':field_data_field_s_exh_date_field_s_exh_date_value'] = strtotime('now');
       $query = $view->query;
     }
-
     // The past exhibitions max end date is in the past.
-    if ($view->current_display == "past_exhibitions") {
+    else if ($view->current_display == "past_exhibitions") {
       // Alter the filters to use the current time instead of a set value.
       $view->query->having[1]['conditions'][0]['value'][':field_data_field_s_exh_date_field_s_exh_date_value2'] = strtotime('now');
+      $query = $view->query;
+    }
+    else {
+      // For all new displays in the exhibitions view lets use a keyword to
+      // replace.
+      foreach ($view->query->having[1]['conditions'] as &$condition) {
+        foreach ($condition['value'] as $key => &$val) {
+          if ($val == "ALTERED IN MODULE CODE") {
+            $val = strtotime('now');
+          }
+        }
+      }
       $query = $view->query;
     }
 
