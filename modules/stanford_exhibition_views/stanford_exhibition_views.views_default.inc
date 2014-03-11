@@ -30,13 +30,81 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['style_plugin'] = 'views_aggregator';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'nid' => 'nid',
+    'field_s_exh_date' => 'field_s_exh_date',
+    'field_s_exh_date_1' => 'field_s_exh_date_1',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'field_s_exh_date' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'field_s_exh_date_1' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+  );
+  $handler->display->display_options['style_options']['totals_per_page'] = '1';
+  $handler->display->display_options['style_options']['totals_row_position'] = array(
+    1 => 0,
+    2 => '2',
+  );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   /* Field: Content: Nid */
@@ -44,6 +112,37 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  /* Field: MIN(Content: Dates) */
+  $handler->display->display_options['fields']['field_s_exh_date']['id'] = 'field_s_exh_date';
+  $handler->display->display_options['fields']['field_s_exh_date']['table'] = 'field_data_field_s_exh_date';
+  $handler->display->display_options['fields']['field_s_exh_date']['field'] = 'field_s_exh_date';
+  $handler->display->display_options['fields']['field_s_exh_date']['group_type'] = 'min';
+  $handler->display->display_options['fields']['field_s_exh_date']['label'] = 'Starting Date';
+  $handler->display->display_options['fields']['field_s_exh_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_exh_date']['settings'] = array(
+    'format_type' => 'stanford_month_date_year',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_s_exh_date']['delta_offset'] = '0';
+  /* Field: MAX(Content: Dates) */
+  $handler->display->display_options['fields']['field_s_exh_date_1']['id'] = 'field_s_exh_date_1';
+  $handler->display->display_options['fields']['field_s_exh_date_1']['table'] = 'field_data_field_s_exh_date';
+  $handler->display->display_options['fields']['field_s_exh_date_1']['field'] = 'field_s_exh_date';
+  $handler->display->display_options['fields']['field_s_exh_date_1']['group_type'] = 'max';
+  $handler->display->display_options['fields']['field_s_exh_date_1']['label'] = 'End Date';
+  $handler->display->display_options['fields']['field_s_exh_date_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_exh_date_1']['settings'] = array(
+    'format_type' => 'stanford_month_date_year',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  $handler->display->display_options['fields']['field_s_exh_date_1']['group_column'] = 'value2';
+  $handler->display->display_options['fields']['field_s_exh_date_1']['delta_offset'] = '0';
   /* Sort criterion: MIN(Content: Dates -  start date (field_s_exh_date)) */
   $handler->display->display_options['sorts']['field_s_exh_date_value']['id'] = 'field_s_exh_date_value';
   $handler->display->display_options['sorts']['field_s_exh_date_value']['table'] = 'field_data_field_s_exh_date';
@@ -80,6 +179,16 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_date_value2']['operator'] = '>=';
   $handler->display->display_options['filters']['field_s_exh_date_value2']['value']['value'] = 'ALTERED IN MODULE CODE';
   $handler->display->display_options['filters']['field_s_exh_date_value2']['group'] = 1;
+  /* Filter criterion: Content: Tags (field_s_exh_tags) */
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['id'] = 'field_s_exh_tags_tid';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['table'] = 'field_data_field_s_exh_tags';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['field'] = 'field_s_exh_tags_tid';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['operator'] = 'and';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['value'] = array(
+    0 => '16',
+    1 => '17',
+  );
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['vocabulary'] = 'tags';
 
   /* Display: Current Exhibitions */
   $handler = $view->new_display('page', 'Current Exhibitions', 'current_exhibitions');
@@ -97,6 +206,81 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Upcoming Exhibitions';
   $handler->display->display_options['display_description'] = 'Upcoming Exhibitions';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'views_aggregator';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'nid' => 'nid',
+    'field_s_exh_date' => 'field_s_exh_date',
+    'field_s_exh_date_1' => 'field_s_exh_date_1',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'nid' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'field_s_exh_date' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+    'field_s_exh_date_1' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+      'has_aggr' => 0,
+      'aggr' => array(
+        'views_aggregator_first' => 'views_aggregator_first',
+      ),
+      'aggr_par' => '',
+      'has_aggr_column' => 0,
+      'aggr_column' => 'views_aggregator_sum',
+      'aggr_par_column' => '',
+    ),
+  );
+  $handler->display->display_options['style_options']['totals_per_page'] = '1';
+  $handler->display->display_options['style_options']['totals_row_position'] = array(
+    1 => 0,
+    2 => '2',
+  );
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -122,6 +306,16 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_date_value']['operator'] = '>=';
   $handler->display->display_options['filters']['field_s_exh_date_value']['value']['value'] = 'ALTERED IN MODULE CODE';
   $handler->display->display_options['filters']['field_s_exh_date_value']['group'] = 1;
+  /* Filter criterion: Content: Tags (field_s_exh_tags) */
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['id'] = 'field_s_exh_tags_tid';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['table'] = 'field_data_field_s_exh_tags';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['field'] = 'field_s_exh_tags_tid';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['operator'] = 'and';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['value'] = array(
+    0 => '16',
+    1 => '17',
+  );
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['vocabulary'] = 'tags';
   $handler->display->display_options['path'] = 'exhibitions/future';
 
   /* Display: Past Exhibitions */
@@ -161,7 +355,18 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_date_value2']['operator'] = '<=';
   $handler->display->display_options['filters']['field_s_exh_date_value2']['value']['value'] = 'ALTERED IN MODULE CODE';
   $handler->display->display_options['filters']['field_s_exh_date_value2']['group'] = 1;
+  /* Filter criterion: Content: Tags (field_s_exh_tags) */
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['id'] = 'field_s_exh_tags_tid';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['table'] = 'field_data_field_s_exh_tags';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['field'] = 'field_s_exh_tags_tid';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['operator'] = 'and';
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['value'] = array(
+    0 => '16',
+    1 => '17',
+  );
+  $handler->display->display_options['filters']['field_s_exh_tags_tid']['vocabulary'] = 'tags';
   $handler->display->display_options['path'] = 'exhibitions/history';
+
   $export['stanford_exhibitions'] = $view;
 
   return $export;
