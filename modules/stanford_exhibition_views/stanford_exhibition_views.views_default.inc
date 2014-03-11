@@ -142,16 +142,6 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_date_value2']['operator'] = '>=';
   $handler->display->display_options['filters']['field_s_exh_date_value2']['value']['value'] = 'ALTERED IN MODULE CODE';
   $handler->display->display_options['filters']['field_s_exh_date_value2']['group'] = 1;
-  /* Filter criterion: Content: Tags (field_s_exh_tags) */
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['id'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['table'] = 'field_data_field_s_exh_tags';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['field'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['operator'] = 'and';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['value'] = array(
-    0 => '16',
-    1 => '17',
-  );
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['vocabulary'] = 'tags';
 
   /* Display: Current Exhibitions */
   $handler = $view->new_display('page', 'Current Exhibitions', 'current_exhibitions');
@@ -232,16 +222,6 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_date_value']['operator'] = '>=';
   $handler->display->display_options['filters']['field_s_exh_date_value']['value']['value'] = 'ALTERED IN MODULE CODE';
   $handler->display->display_options['filters']['field_s_exh_date_value']['group'] = 1;
-  /* Filter criterion: Content: Tags (field_s_exh_tags) */
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['id'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['table'] = 'field_data_field_s_exh_tags';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['field'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['operator'] = 'and';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['value'] = array(
-    0 => '16',
-    1 => '17',
-  );
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['vocabulary'] = 'tags';
   $handler->display->display_options['path'] = 'exhibitions/future';
 
   /* Display: Past Exhibitions */
@@ -281,16 +261,6 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_date_value2']['operator'] = '<=';
   $handler->display->display_options['filters']['field_s_exh_date_value2']['value']['value'] = 'ALTERED IN MODULE CODE';
   $handler->display->display_options['filters']['field_s_exh_date_value2']['group'] = 1;
-  /* Filter criterion: Content: Tags (field_s_exh_tags) */
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['id'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['table'] = 'field_data_field_s_exh_tags';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['field'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['operator'] = 'and';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['value'] = array(
-    0 => '16',
-    1 => '17',
-  );
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['vocabulary'] = 'tags';
   $handler->display->display_options['path'] = 'exhibitions/history';
   $export['stanford_exhibitions'] = $view;
 
