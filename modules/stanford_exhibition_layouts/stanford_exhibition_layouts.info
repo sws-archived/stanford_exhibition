@@ -1,0 +1,16 @@
+name = Stanford Exhibition Layouts
+description = Default Exhibition Layouts
+core = 7.x
+package = Stanford
+version = 7.x-1.0
+project = stanford_exhibition_layouts
+dependencies[] = context
+dependencies[] = stanford_exhibition
+dependencies[] = stanford_exhibition_views
+dependencies[] = views
+features[context][] = exhibition_view_pages
+features[context][] = exhibitions_node
+features[ctools][] = context:context:3
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+project path = sites/default/modules/stanford/stanford_exhibition/modules

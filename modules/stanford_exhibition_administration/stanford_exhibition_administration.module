@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Stanford Exhibition Administration feature.
+ */
+
+include_once 'stanford_exhibition_administration.features.inc';

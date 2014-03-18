@@ -5,6 +5,8 @@
  */
 
 include_once 'stanford_exhibition.features.inc';
+define(FIELD_DATE_DURATION, 'field_s_exh_dates_duration');
+define(FIELD_DATE_DATES, 'field_s_exh_date');
 
 /*
  * Implements hook_ctools_plugin_directory().
@@ -12,5 +14,67 @@ include_once 'stanford_exhibition.features.inc';
 function stanford_exhibition_ctools_plugin_directory($module, $plugin) {
   if ($module == 'feeds_tamper') {
     return 'plugins';
+  }
+}
+
+/**
+ * Implements hook_permission().
+ */
+function stanford_exhibition_permission() {
+  return array(
+    'alter dates duration field' =>  array(
+      'title' => t('Alter Dates Duration Field'),
+      'description' => t('Alter the dates duration field that would normally be set by code.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_feeds_presave()
+ * @param  [type] $source [description]
+ * @param  [type] $entity [description]
+ * @param  [type] $item   [description]
+ * @return [type]         [description]
+ */
+function stanford_exhibition_feeds_presave($source, $entity, $item) {
+  if ($entity->feeds_item->entity_type == 'node' && $entity->type == 'stanford_exhibition') {
+    stanford_exhibition_node_presave($entity);
+  }
+}
+
+
+/**
+ * Implements hook_node_presave
+ */
+function stanford_exhibition_node_presave($node) {
+  if ($node->type == "stanford_exhibition" && isset($node->{FIELD_DATE_DURATION}) && isset($node->{FIELD_DATE_DATES})) {
+    $start_dates = array();
+    $end_dates = array();
+
+    foreach($node->{FIELD_DATE_DATES}[$node->language] as $date) {
+      $start_dates[] = $date['value'];
+      $end_dates[] = $date['value2'];
+    }
+
+    arsort($start_dates);
+    asort($end_dates);
+
+    $node->{FIELD_DATE_DURATION}[$node->language][0]['value'] = array_pop($start_dates);
+    $node->{FIELD_DATE_DURATION}[$node->language][0]['value2'] = array_pop($end_dates);
+    $node->{FIELD_DATE_DURATION}[$node->language][0]['timezone_db'] = $node->{FIELD_DATE_DATES}[$node->language][0]['timezone_db'];
+
+  }
+
+  return $node;
+}
+
+/**
+ * Implements hook_form_alter()
+ * @param $form
+ * @param $form_state
+ */
+function stanford_exhibition_form_node_form_alter(&$form, $form_state) {
+  if (isset($form[FIELD_DATE_DURATION])) {
+    $form[FIELD_DATE_DURATION]['#access'] = user_access('alter dates duration field');
   }
 }
