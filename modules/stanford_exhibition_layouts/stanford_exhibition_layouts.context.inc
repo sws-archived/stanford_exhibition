@@ -20,7 +20,7 @@ function stanford_exhibition_layouts_context_default_contexts() {
     'path' => array(
       'values' => array(
         'exhibitions/history' => 'exhibitions/history',
-        'exhibitions/current' => 'exhibitions/current',
+        'exhibitions' => 'exhibitions',
         'exhibitions/future' => 'exhibitions/future',
       ),
     ),
@@ -28,6 +28,12 @@ function stanford_exhibition_layouts_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
+        'views-e30231e94dae86d32b18bb157038eb34' => array(
+          'module' => 'views',
+          'delta' => 'e30231e94dae86d32b18bb157038eb34',
+          'region' => 'sidebar_first',
+          'weight' => '-10',
+        ),
         'views-008bead96b0bb35fa2fe6055a540af13' => array(
           'module' => 'views',
           'delta' => '008bead96b0bb35fa2fe6055a540af13',
@@ -57,7 +63,7 @@ function stanford_exhibition_layouts_context_default_contexts() {
         'stanford_exhibition' => 'stanford_exhibition',
       ),
       'options' => array(
-        'node_form' => '1',
+        'node_form' => '0',
       ),
     ),
   );
