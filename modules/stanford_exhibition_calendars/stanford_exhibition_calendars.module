@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Stanford Exhibition Calendars feature.
+ */
+
+include_once 'stanford_exhibition_calendars.features.inc';
