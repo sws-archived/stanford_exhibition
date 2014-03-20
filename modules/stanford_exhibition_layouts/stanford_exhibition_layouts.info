@@ -13,4 +13,6 @@ features[context][] = exhibitions_node
 features[ctools][] = context:context:3
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
+features_exclude[field_base][field_s_exh_space] = field_s_exh_space
+features_exclude[field_instance][node-stanford_exhibition-field_s_exh_space] = node-stanford_exhibition-field_s_exh_space
 project path = sites/default/modules/stanford/stanford_exhibition/modules

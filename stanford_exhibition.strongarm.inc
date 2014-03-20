@@ -71,16 +71,16 @@ function stanford_exhibition_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '21',
+          'weight' => '22',
         ),
         'title' => array(
           'weight' => '2',
         ),
         'path' => array(
-          'weight' => '20',
+          'weight' => '21',
         ),
         'redirect' => array(
-          'weight' => '19',
+          'weight' => '20',
         ),
       ),
       'display' => array(),
