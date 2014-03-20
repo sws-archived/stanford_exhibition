@@ -406,6 +406,8 @@ function stanford_exhibition_views_views_default_views() {
 
   /* Display: Current Exhibitions Block */
   $handler = $view->new_display('block', 'Current Exhibitions Block', 'current_exhibitions_block');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Current Exhibitions';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'current_exhibitions';
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -529,6 +531,37 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'stanford_exhibition' => 'stanford_exhibition',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Dates Duration -  start date (field_s_exh_dates_duration) */
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['id'] = 'field_s_exh_dates_duration_value';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['field'] = 'field_s_exh_dates_duration_value';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['group'] = 1;
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['default_date'] = 'today';
+  /* Filter criterion: Content: Dates Duration - end date (field_s_exh_dates_duration:value2) */
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['id'] = 'field_s_exh_dates_duration_value2';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['field'] = 'field_s_exh_dates_duration_value2';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['group'] = 1;
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['default_date'] = 'today';
 
   /* Display: Upcoming Exhibitions Block */
   $handler = $view->new_display('block', 'Upcoming Exhibitions Block', 'upcoming_exhibitions_block');
@@ -1110,10 +1143,18 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['attachment_position'] = 'after';
   $handler->display->display_options['inherit_exposed_filters'] = TRUE;
 
-  /* Display: Current Exhibitions Block */
-  $handler = $view->new_display('block', 'Current Exhibitions Block', 'current_exhibitions_block_1_up');
+  /* Display: Current Block - 1 Up */
+  $handler = $view->new_display('block', 'Current Block - 1 Up', 'current_exhibitions_block_1_up');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Current Exhibitions';
+  $handler->display->display_options['display_description'] = 'Current Block - 1 Up';
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'See All Current Exhibitions';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'current_exhibitions';
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -1121,13 +1162,6 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: View area */
-  $handler->display->display_options['empty']['view']['id'] = 'view';
-  $handler->display->display_options['empty']['view']['table'] = 'views';
-  $handler->display->display_options['empty']['view']['field'] = 'view';
-  $handler->display->display_options['empty']['view']['empty'] = TRUE;
-  $handler->display->display_options['empty']['view']['view_to_insert'] = 'stanford_exhibitions:upcoming_exhibitions_block';
-  $handler->display->display_options['empty']['view']['inherit_arguments'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -1175,7 +1209,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_exh_thumb']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_exh_thumb']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_s_exh_thumb']['settings'] = array(
-    'image_style' => 'sm-square',
+    'image_style' => 'med-landscape',
     'image_link' => 'content',
   );
   /* Field: Content: Location */
@@ -1211,8 +1245,8 @@ function stanford_exhibition_views_views_default_views() {
   <div>
   <div class="event-title"><h3>[title]</h3></div>
   <div class="descriptor">
-  <div class="event-date-long">[field_s_exh_dates_duration_2]</div>
   <div class="event-location">[field_s_exh_location]</div>
+  <div class="event-date-long">[field_s_exh_dates_duration_2]</div>
   </div>
   </div>
   </div>';
