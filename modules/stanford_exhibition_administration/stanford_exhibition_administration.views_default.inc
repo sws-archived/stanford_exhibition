@@ -15,14 +15,14 @@ function stanford_exhibition_administration_views_default_views() {
   $view->description = 'View, edit, and delete your site\'s content.';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Stanford Exhibition: Manage';
+  $view->human_name = 'Stanford Exhibitions: Manage';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Manage Stanford Exhibition';
+  $handler->display->display_options['title'] = 'Manage Stanford Exhibitions';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'administer nodes';
@@ -424,7 +424,7 @@ function stanford_exhibition_administration_views_default_views() {
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['path'] = 'admin/manage/exhibition';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Manage Exhibition';
+  $handler->display->display_options['menu']['title'] = 'Manage Exhibitions';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'menu-manage-content-by-type';
   $handler->display->display_options['menu']['context'] = 0;
