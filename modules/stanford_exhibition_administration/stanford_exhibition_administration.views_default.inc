@@ -418,28 +418,6 @@ function stanford_exhibition_administration_views_default_views() {
     7 => 0,
     8 => 0,
   );
-  /* Filter criterion: Content: Tags (field_s_exh_tags) */
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['id'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['table'] = 'field_data_field_s_exh_tags';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['field'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['value'] = '';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['expose']['operator_id'] = 'field_s_exh_tags_tid_op';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['expose']['label'] = 'Tags';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['expose']['operator'] = 'field_s_exh_tags_tid_op';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['expose']['identifier'] = 'field_s_exh_tags_tid';
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    6 => 0,
-    5 => 0,
-    4 => 0,
-    3 => 0,
-    9 => 0,
-    7 => 0,
-    8 => 0,
-  );
-  $handler->display->display_options['filters']['field_s_exh_tags_tid']['vocabulary'] = 'tags';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'manage_exhibition_page');
