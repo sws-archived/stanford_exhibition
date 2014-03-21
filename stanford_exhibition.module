@@ -5,8 +5,8 @@
  */
 
 include_once 'stanford_exhibition.features.inc';
-define(FIELD_DATE_DURATION, 'field_s_exh_dates_duration');
-define(FIELD_DATE_DATES, 'field_s_exh_date');
+define('FIELD_DATE_DURATION', 'field_s_exh_dates_duration');
+define('FIELD_DATE_DATES', 'field_s_exh_date');
 
 /*
  * Implements hook_ctools_plugin_directory().
