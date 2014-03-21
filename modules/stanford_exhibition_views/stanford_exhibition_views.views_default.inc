@@ -257,38 +257,10 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['title'] = 'Upcoming Exhibitions';
   $handler->display->display_options['display_description'] = 'Upcoming Exhibitions';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'title' => 'title',
-    'field_s_exh_dates_duration' => 'field_s_exh_dates_duration',
-    'field_s_exh_dates_duration_1' => 'field_s_exh_dates_duration_1',
-  );
-  $handler->display->display_options['style_options']['default'] = 'field_s_exh_dates_duration';
-  $handler->display->display_options['style_options']['info'] = array(
-    'title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_s_exh_dates_duration' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-    'field_s_exh_dates_duration_1' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-    ),
-  );
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
@@ -1209,7 +1181,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_exh_thumb']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_exh_thumb']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_s_exh_thumb']['settings'] = array(
-    'image_style' => 'med-landscape',
+    'image_style' => '3-col-header',
     'image_link' => 'content',
   );
   /* Field: Content: Location */
@@ -1218,6 +1190,11 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_exh_location']['field'] = 'field_s_exh_location';
   $handler->display->display_options['fields']['field_s_exh_location']['label'] = '';
   $handler->display->display_options['fields']['field_s_exh_location']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['trim_whitespace'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['max_length'] = '40';
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['html'] = TRUE;
   $handler->display->display_options['fields']['field_s_exh_location']['element_label_colon'] = FALSE;
   /* Field: Content: Dates Duration */
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['id'] = 'field_s_exh_dates_duration_2';
@@ -1227,7 +1204,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_month_date_year',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
