@@ -15,7 +15,7 @@ function stanford_exhibition_field_default_field_instances() {
     'bundle' => 'stanford_exhibition',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This filtered text field is exhibition description (e.g., this exhibition is etc. etc.).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -78,7 +78,7 @@ function stanford_exhibition_field_default_field_instances() {
         'summary_rows' => 5,
       ),
       'type' => 'text_textarea_with_summary',
-      'weight' => 5,
+      'weight' => 6,
     ),
   );
 
@@ -87,14 +87,14 @@ function stanford_exhibition_field_default_field_instances() {
     'bundle' => 'stanford_exhibition',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This formatted text field is for the exhibition admission information (e.g., Free and open to the public).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -103,6 +103,7 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'field_s_exh_admission',
     'label' => 'Admission',
@@ -141,10 +142,10 @@ function stanford_exhibition_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'rows' => 5,
+        'rows' => 3,
       ),
       'type' => 'text_textarea',
-      'weight' => 10,
+      'weight' => 4,
     ),
   );
 
@@ -153,7 +154,8 @@ function stanford_exhibition_field_default_field_instances() {
     'bundle' => 'stanford_exhibition',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This content is imported from events.stanford.edu.
+',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -168,6 +170,7 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'field_s_exh_audience',
     'label' => 'Audience',
@@ -176,10 +179,13 @@ function stanford_exhibition_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
+      'active' => 0,
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
       'weight' => 18,
     ),
   );
@@ -245,7 +251,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 8,
+      'weight' => 13,
     ),
   );
 
@@ -310,7 +316,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 16,
+      'weight' => 14,
     ),
   );
 
@@ -319,7 +325,7 @@ function stanford_exhibition_field_default_field_instances() {
     'bundle' => 'stanford_exhibition',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field is for the email address of the contact person for the exhibition (e.g., email-address@stanford.edu).',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -335,6 +341,7 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'field_s_exh_contact_email',
     'label' => 'Contact Email',
@@ -349,7 +356,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 15,
+      'weight' => 8,
     ),
   );
 
@@ -358,7 +365,7 @@ function stanford_exhibition_field_default_field_instances() {
     'bundle' => 'stanford_exhibition',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field is for the phone number of the contact person for the exhibition (e.g., 650-725-1234).',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -374,6 +381,7 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'field_s_exh_contact_phone',
     'label' => 'Contact Phone',
@@ -415,7 +423,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 14,
+      'weight' => 9,
     ),
   );
 
@@ -463,7 +471,7 @@ function stanford_exhibition_field_default_field_instances() {
         'year_range' => '-10:+10',
       ),
       'type' => 'date_popup',
-      'weight' => 3,
+      'weight' => 6,
     ),
   );
 
@@ -517,7 +525,7 @@ function stanford_exhibition_field_default_field_instances() {
         'year_range' => '-5:+5',
       ),
       'type' => 'date_select',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -582,7 +590,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 17,
+      'weight' => 15,
     ),
   );
 
@@ -647,7 +655,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 12,
     ),
   );
 
@@ -697,7 +705,7 @@ function stanford_exhibition_field_default_field_instances() {
     'bundle' => 'stanford_exhibition',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field is the location for the exhibition (e.g., Redwood Hall, Room 308).',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -713,6 +721,7 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'field_s_exh_location',
     'label' => 'Location',
@@ -754,7 +763,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 3,
     ),
   );
 
@@ -806,7 +815,61 @@ function stanford_exhibition_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 19,
+      'weight' => 16,
+    ),
+  );
+
+  // Exported field_instance: 'node-stanford_exhibition-field_s_exh_moreinfo'
+  $field_instances['node-stanford_exhibition-field_s_exh_moreinfo'] = array(
+    'bundle' => 'stanford_exhibition',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'This link field will add a link Title and URL to location(s) that is external to your site (e.g. Stanford University, http://www.stanford.edu).',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'link',
+        'settings' => array(),
+        'type' => 'link_default',
+        'weight' => 23,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_s_exh_moreinfo',
+    'label' => 'More Information',
+    'required' => 0,
+    'settings' => array(
+      'attributes' => array(
+        'class' => '',
+        'configurable_title' => 0,
+        'rel' => '',
+        'target' => 'default',
+        'title' => '',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
+      'user_register_form' => FALSE,
+      'validate_url' => 1,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'link',
+      'settings' => array(),
+      'type' => 'link_field',
+      'weight' => 10,
     ),
   );
 
@@ -815,7 +878,7 @@ function stanford_exhibition_field_default_field_instances() {
     'bundle' => 'stanford_exhibition',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'This text field is for the exhibition sponsor (e.g., Stanford Web Services).',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -831,6 +894,7 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'field_s_exh_sponsor',
     'label' => 'Sponsor',
@@ -872,7 +936,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 7,
     ),
   );
 
@@ -881,7 +945,7 @@ function stanford_exhibition_field_default_field_instances() {
     'bundle' => 'stanford_exhibition',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'XML Tags',
+    'description' => 'This content is imported from events.stanford.edu.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -912,7 +976,7 @@ function stanford_exhibition_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 6,
+      'weight' => 19,
     ),
   );
 
@@ -1007,7 +1071,7 @@ function stanford_exhibition_field_default_field_instances() {
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
-      'weight' => 7,
+      'weight' => 5,
     ),
   );
 
@@ -1060,7 +1124,7 @@ function stanford_exhibition_field_default_field_instances() {
       'module' => 'link',
       'settings' => array(),
       'type' => 'link_field',
-      'weight' => 1,
+      'weight' => 17,
     ),
   );
 
@@ -1085,11 +1149,21 @@ function stanford_exhibition_field_default_field_instances() {
   t('Image');
   t('Location');
   t('Map URL');
+  t('More Information');
   t('Sponsor');
   t('The dates in which this exhibition is active for. You may enter a start and end date for each day, spanning dates, or a combination of both.');
   t('The start and end date of the entire exhibition. This field is calculated automatically based on the dates provided in the dates field. ');
+  t('This content is imported from events.stanford.edu.');
+  t('This content is imported from events.stanford.edu.
+');
+  t('This filtered text field is exhibition description (e.g., this exhibition is etc. etc.).');
+  t('This formatted text field is for the exhibition admission information (e.g., Free and open to the public).');
+  t('This link field will add a link Title and URL to location(s) that is external to your site (e.g. Stanford University, http://www.stanford.edu).');
+  t('This text field is for the email address of the contact person for the exhibition (e.g., email-address@stanford.edu).');
+  t('This text field is for the exhibition sponsor (e.g., Stanford Web Services).');
+  t('This text field is for the phone number of the contact person for the exhibition (e.g., 650-725-1234).');
+  t('This text field is the location for the exhibition (e.g., Redwood Hall, Room 308).');
   t('URL');
-  t('XML Tags');
 
   return $field_instances;
 }

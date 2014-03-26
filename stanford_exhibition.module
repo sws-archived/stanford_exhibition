@@ -30,31 +30,6 @@ function stanford_exhibition_permission() {
 }
 
 /**
- * Implements hook_menu().
- */
-function stanford_exhibition_menu() {
-
-  // $items['exhibitions'] = array(
-  //   'title' => 'Exhibitions',
-  //   'page callback' => 'stanford_exhibition_exhibitions_page',
-  //   'access arguments' => array('access content'),
-  //   'type' => MENU_CALLBACK,
-  // );
-
-  // return $items;
-
-}
-
-/**
- * A page callback for the /exhibitions url
- * @return string of html
- */
-function stanford_exhibition_exhibitions_page() {
-  $content = "<!-- Nothing here as to place content via context //-->";
-  return $content;
-}
-
-/**
  * Implements hook_feeds_presave()
  * @param  [type] $source [description]
  * @param  [type] $entity [description]
@@ -70,6 +45,7 @@ function stanford_exhibition_feeds_presave($source, $entity, $item) {
 
 /**
  * Implements hook_node_presave
+ * We want to store the first and last date of an exhibition
  */
 function stanford_exhibition_node_presave($node) {
   if ($node->type == "stanford_exhibition" && isset($node->{FIELD_DATE_DURATION}) && isset($node->{FIELD_DATE_DATES})) {
