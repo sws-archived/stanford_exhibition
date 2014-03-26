@@ -26,7 +26,6 @@ function stanford_exhibition_field_group_info() {
       0 => 'field_s_exh_admission',
       1 => 'field_s_exh_location',
       2 => 'field_s_exh_dates_duration',
-      3 => 'field_s_exh_space',
     ),
     'format_type' => 'div',
     'format_settings' => array(
