@@ -1,0 +1,8 @@
+name = Stanford Exhibition Events Takeover
+description = Hijacks all the thinks of the upcoming events page.
+core = 7.x
+version = 7.x-1.0
+project = stanford_exhibition_events_takeover
+dependencies[] = stanford_events_views
+dependencies[] = stanford_exhibition
+dependencies[] = views
