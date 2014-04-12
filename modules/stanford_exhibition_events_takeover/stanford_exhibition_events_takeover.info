@@ -6,3 +6,5 @@ project = stanford_exhibition_events_takeover
 dependencies[] = stanford_events_views
 dependencies[] = stanford_exhibition
 dependencies[] = views
+scripts[] = js/stanford_exhibition_events_takeover.js
+stylesheets[all][] = css/stanford_exhibition_events_takeover.css

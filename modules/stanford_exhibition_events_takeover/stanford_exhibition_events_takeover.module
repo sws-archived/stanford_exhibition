@@ -27,52 +27,54 @@ function stanford_exhibition_events_takeover_views_pre_build(&$view) {
     }
 
     $args = _seset_check_args();
-    if(!$args) {
-      return;
+    if($args) {
+      takeover_pre_build_with_args($view);
+    }
+    else {
+      takeover_pre_build_without_args($view);
     }
 
-    if ($view->name == "stanford_events_views" && $view->current_display == 'block_1') {
-      seset_block1($view);
-    }
 
-    if ($view->name == "stanford_events_calendar" && $view->current_display == 'block_1') {
-      seset_cal_block1($view);
-    }
 
-    if ($view->name == "stanford_events_views" && $view->current_display == 'page') {
-      seset_page($view);
-    }
 
-    if ($view->name == "stanford_exhibitions" && $view->current_display == 'current_exhibitions_block') {
-      seset_current_exhibitions_block($view);
-    }
-
-    if ($view->name == "stanford_exhibitions" && $view->current_display == 'upcoming_exhibitions_block') {
-      seset_upcoming_exhibitions_block($view);
-    }
 }
+
+/**
+ * Sort of like a large switch statement.
+ * @param  [type] $view [description]
+ * @return [type]       [description]
+ */
+function takeover_pre_build_with_args(&$view) {
+  if ($view->name == "stanford_events_views" && $view->current_display == 'page') {
+    takeover_stanford_events_views_page($view);
+  }
+
+  if ($view->name == "stanford_exhibitions" && $view->current_display == 'current_exhibitions_block') {
+    takeover_stanford_exhibitions_current_exhibitions_block($view);
+  }
+
+  if ($view->name == "stanford_exhibitions" && $view->current_display == 'upcoming_exhibitions_block') {
+    takeover_stanford_exhibitions_upcoming_exhibitions_block($view);
+  }
+}
+
+/**
+ * Sort of like a large switch statement.
+ * @param  [type] $view [description]
+ * @return [type]       [description]
+ */
+function takeover_pre_build_without_args(&$view) {
+  // nothing to see here.
+}
+
+
+
 
 /**
  *
  * @param $view
  */
-function seset_block1(&$view) {
-
-}
-
-/**
- *
- * @param $view
- */
-function seset_cal_block1(&$view) {
-
-}
-
-/**
- *
- * @param $view
- */
-function seset_page(&$view) {
+function takeover_stanford_events_views_page(&$view) {
 
   $args = _seset_get_args();
   $minmax = _seset_get_minmax($args);
@@ -93,59 +95,188 @@ function seset_page(&$view) {
  *
  * @param $view
  */
-function seset_current_exhibitions_block(&$view) {
-    $args = _seset_get_args();
-    $minmax = _seset_get_minmax($args);
+function takeover_stanford_exhibitions_current_exhibitions_block(&$view) {
 
-    $view->empty = array();
-    $view->display_handler->options['empty'] = array();
-    $view->display_handler->display->dispaly_options['empty'] = array();
+  $args = _seset_get_args();
+  $minmax = _seset_get_minmax($args);
 
-    $view->filter['field_s_exh_dates_duration_value']->value['min'] = $minmax['min'];
-    $view->filter['field_s_exh_dates_duration_value']->value['type'] = 'date';
-    $view->filter['field_s_exh_dates_duration_value']->options['value']['min'] = $minmax['min'];
-    $view->filter['field_s_exh_dates_duration_value']->options['value']['type'] = 'date';
-    $view->filter['field_s_exh_dates_duration_value']->options['default_date'] = '';
+  // Disable replacing the current exhibitions block with the upcoming ones.
+  // $view->empty = array();
+  // $view->display_handler->options['empty'] = array();
+  // $view->display_handler->display->dispaly_options['empty'] = array();
 
-    $view->filter['field_s_exh_dates_duration_value2']->value['max'] = $minmax['max'];
-    $view->filter['field_s_exh_dates_duration_value2']->value['type'] = 'date';
-    $view->filter['field_s_exh_dates_duration_value2']->options['value']['max'] = $minmax['max'];
-    $view->filter['field_s_exh_dates_duration_value2']->options['value']['type'] = 'date';
-    $view->filter['field_s_exh_dates_duration_value2']->options['default_date'] = '';
+  $view->filter['field_s_exh_dates_duration_value']->value['min'] = $minmax['min'];
+  $view->filter['field_s_exh_dates_duration_value']->value['type'] = 'date';
+  $view->filter['field_s_exh_dates_duration_value']->options['value']['min'] = $minmax['min'];
+  $view->filter['field_s_exh_dates_duration_value']->options['value']['type'] = 'date';
+  $view->filter['field_s_exh_dates_duration_value']->options['default_date'] = '';
+
+  $view->filter['field_s_exh_dates_duration_value2']->value['max'] = $minmax['max'];
+  $view->filter['field_s_exh_dates_duration_value2']->value['type'] = 'date';
+  $view->filter['field_s_exh_dates_duration_value2']->options['value']['max'] = $minmax['max'];
+  $view->filter['field_s_exh_dates_duration_value2']->options['value']['type'] = 'date';
+  $view->filter['field_s_exh_dates_duration_value2']->options['default_date'] = '';
+
 }
 
 /**
  *
  * @param $view
  */
-function seset_upcoming_exhibitions_block(&$view) {
-    $args = _seset_get_args();
-    $minmax = _seset_get_minmax($args);
+function takeover_stanford_exhibitions_upcoming_exhibitions_block(&$view) {
 
-    $view->filter['field_s_exh_dates_duration_value']->value['value'] = $minmax['min'];
-    $view->filter['field_s_exh_dates_duration_value']->value['min'] = null;
-    $view->filter['field_s_exh_dates_duration_value']->value['max'] = null;
-    $view->filter['field_s_exh_dates_duration_value']->value['type'] = 'date';
-    $view->filter['field_s_exh_dates_duration_value']->options['value']['value'] = $minmax['min'];
-    $view->filter['field_s_exh_dates_duration_value']->options['value']['min'] = null;
-    $view->filter['field_s_exh_dates_duration_value']->options['value']['max'] = null;
-    $view->filter['field_s_exh_dates_duration_value']->options['value']['type'] = 'date';
-    $view->filter['field_s_exh_dates_duration_value']->options['default_date'] = '';
+  $args = _seset_get_args();
+  $minmax = _seset_get_minmax($args);
+  $month_name = date("F", mktime(0, 0, 0, $args['month'], 10));
 
-    $view->filter['field_s_exh_dates_duration_value2'] = clone($view->filter['field_s_exh_dates_duration_value']);
-    $view->filter['field_s_exh_dates_duration_value2']->operator = "<=";
-    $view->filter['field_s_exh_dates_duration_value2']->value['value'] = $minmax['max'];
-    $view->filter['field_s_exh_dates_duration_value2']->value['type'] = 'date';
-    $view->filter['field_s_exh_dates_duration_value2']->options['value']['value'] = $minmax['max'];
-    $view->filter['field_s_exh_dates_duration_value2']->options['value']['type'] = 'date';
-    $view->filter['field_s_exh_dates_duration_value2']->options['default_date'] = '';
-    $view->filter['field_s_exh_dates_duration_value2']->options['operator'] = "<=";
+  $view->header['area_text_custom']->options['content'] = "<h2>" . $month_name . " Exhibitions</h2>";
 
-//    $view->filter['field_s_exh_dates_duration_value2']->real_field = "field_s_exh_dates_duration_value";
-//    $view->filter['field_s_exh_dates_duration_value2']->options['id'] = "field_s_exh_dates_duration_value";
-//    $view->filter['field_s_exh_dates_duration_value2']->options['field'] = "field_s_exh_dates_duration_value";
-//    $view->filter['field_s_exh_dates_duration_value2']->field = "field_s_exh_dates_duration_value";
+  $view->filter['field_s_exh_dates_duration_value']->value['value'] = $minmax['min'];
+  $view->filter['field_s_exh_dates_duration_value']->value['min'] = null;
+  $view->filter['field_s_exh_dates_duration_value']->value['max'] = null;
+  $view->filter['field_s_exh_dates_duration_value']->value['type'] = 'date';
+  $view->filter['field_s_exh_dates_duration_value']->options['value']['value'] = $minmax['min'];
+  $view->filter['field_s_exh_dates_duration_value']->options['value']['min'] = null;
+  $view->filter['field_s_exh_dates_duration_value']->options['value']['max'] = null;
+  $view->filter['field_s_exh_dates_duration_value']->options['value']['type'] = 'date';
+  $view->filter['field_s_exh_dates_duration_value']->options['default_date'] = '';
 
+  $view->filter['field_s_exh_dates_duration_value2'] = clone($view->filter['field_s_exh_dates_duration_value']);
+  $view->filter['field_s_exh_dates_duration_value2']->operator = "<=";
+  $view->filter['field_s_exh_dates_duration_value2']->value['value'] = $minmax['max'];
+  $view->filter['field_s_exh_dates_duration_value2']->value['type'] = 'date';
+  $view->filter['field_s_exh_dates_duration_value2']->options['value']['value'] = $minmax['max'];
+  $view->filter['field_s_exh_dates_duration_value2']->options['value']['type'] = 'date';
+  $view->filter['field_s_exh_dates_duration_value2']->options['default_date'] = '';
+  $view->filter['field_s_exh_dates_duration_value2']->options['operator'] = "<=";
+
+}
+
+/**
+ * Change titles of the views on the upcoming events page when using the
+ * mini calendar to control the dates.
+ * @param  [type] $view [description]
+ * @return [type]       [description]
+ */
+function stanford_exhibition_events_takeover_views_post_render(&$view) {
+
+  // ARG ONLY CODEZ... ---------------------------------------------------------
+  if (!_seset_check_args()) {
+    return;
+  }
+
+  $args = _seset_get_args();
+  $month_name = date("F", mktime(0, 0, 0, $args['month'], 10));
+
+  if ($view->name == "stanford_events_views" && $view->current_display == "page") {
+    $view->set_title($month_name . ' Events');
+  }
+
+}
+
+/**
+ * [stanford_exhibition_events_takeover_views_pre_view description]
+ * @param  [type] $view       [description]
+ * @param  [type] $display_id [description]
+ * @param  [type] $args       [description]
+ * @return [type]             [description]
+ */
+function stanford_exhibition_events_takeover_views_pre_view(&$view, &$display_id, $args) {
+
+  if ($view->name == "stanford_events_calendar" && $display_id == "page_month") {
+    takeover_pre_view_stanford_events_calendar_page_month($view, $display_id, $args);
+  }
+
+  if ($view->name == "stanford_events_calendar" && $display_id == "page_3") {
+    takeover_pre_view_stanford_events_calendar_page_day($view, $display_id, $args);
+  }
+
+}
+
+/**
+ * [takeover_pre_view_stanford_events_calendar_page_month description]
+ * @param  [type] $view       [description]
+ * @param  [type] $display_id [description]
+ * @param  [type] $args       [description]
+ * @return [type]             [description]
+ */
+function takeover_pre_view_stanford_events_calendar_page_month(&$view, &$display_id, $args) {
+    // $footer = views_embed_view('stanford_exhibitions_calendar', 'page_month', $args[0]);
+
+    // Attach the exhibitions page_month view display to this as a footer attachement.
+    // Start by getting and setting the view.
+    // -------------------------------------------------------------------------
+    $attachment = views_get_view('stanford_exhibitions_calendar');
+    $attachment->set_arguments($args);
+    $attachment->set_display('page_month');
+
+    $options = array(
+      'id' => 'area',
+      'table' => 'views',
+      'field' => 'area',
+      'empty' => TRUE,
+      'content' => '<h2 class="title" >Exhibitions</h2>',
+      'format' => 'full_html',
+      'tokenize' => 0,
+    );
+    $attachment->display_handler->set_option('header', array('text' => $options));
+    $footer = $attachment->render();
+
+    // -------------------------------------------------------------------------
+
+    $options = array(
+      'id' => 'area',
+      'table' => 'views',
+      'field' => 'area',
+      'empty' => FALSE,
+      'content' => $footer,
+      'format' => 'full_html',
+      'tokenize' => 0,
+    );
+    $view->display_handler->set_option('footer', array('text' => $options));
+}
+
+/**
+ * [takeover_pre_view_stanford_events_calendar_page_month description]
+ * @param  [type] $view       [description]
+ * @param  [type] $display_id [description]
+ * @param  [type] $args       [description]
+ * @return [type]             [description]
+ */
+function takeover_pre_view_stanford_events_calendar_page_day(&$view, &$display_id, $args) {
+    // $footer = views_embed_view('stanford_exhibitions_calendar', 'page_month', $args[0]);
+
+    // Attach the exhibitions page_month view display to this as a footer attachement.
+    // Start by getting and setting the view.
+    // -------------------------------------------------------------------------
+    $attachment = views_get_view('stanford_exhibitions_calendar');
+    $attachment->set_arguments($args);
+    $attachment->set_display('page_3');
+
+    $options = array(
+      'id' => 'area',
+      'table' => 'views',
+      'field' => 'area',
+      'empty' => TRUE,
+      'content' => '<h2 class="title" >Exhibitions</h2>',
+      'format' => 'full_html',
+      'tokenize' => 0,
+    );
+    $attachment->display_handler->set_option('header', array('text' => $options));
+    $footer = $attachment->render();
+
+    // -------------------------------------------------------------------------
+
+    $options = array(
+      'id' => 'area',
+      'table' => 'views',
+      'field' => 'area',
+      'empty' => FALSE,
+      'content' => $footer,
+      'format' => 'full_html',
+      'tokenize' => 0,
+    );
+    $view->display_handler->set_option('footer', array('text' => $options));
 }
 
 /**
@@ -191,7 +322,7 @@ function _seset_get_minmax($args) {
   $min = date('Y-m-d', $minT);
 
   $maxD = new DateTime(date('Y-m-d', $minT));
-  $maxD->modify('first day of next month');
+  $maxD->modify('last day of this month');
   $max = $maxD->format('Y-m-d');
 
   return array('min' => $min, 'max' => $max);

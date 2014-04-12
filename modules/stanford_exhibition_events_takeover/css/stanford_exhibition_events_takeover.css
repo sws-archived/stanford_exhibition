@@ -1,0 +1,4 @@
+.page-events-day .view-stanford-exhibitions-calendar .date-nav,
+.page-events-month .view-stanford-exhibitions-calendar .date-nav {
+  display: none;
+}
