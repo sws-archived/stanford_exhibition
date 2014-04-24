@@ -5,6 +5,53 @@
  */
 
 /**
+ * Implements hook_boot().
+ */
+function stanford_exhibition_events_takeover_init() {
+
+  /**
+   * Hard programmed redirect for redirecting exhibition-views to
+   * events set of views.
+   * @var [type]
+   */
+
+  $boolean = stanford_exhibition_events_takeover_is_page_events_calendar();
+
+  if ($boolean) {
+    $url = 'events/day/' . arg(2);
+    drupal_goto($url);
+  }
+
+}
+
+/**
+ * Returns wether or not the url is an exhibitions-events url
+ * @return [type] [description]
+ */
+function stanford_exhibition_events_takeover_is_page_events_calendar($prefix = "exhibitions-events") {
+  $arg0 = arg(0);
+  $arg1 = arg(1);
+  $arg2 = arg(2);
+
+  // Check for prefix
+  if ($arg0 !== $prefix) {
+    return FALSE;
+  }
+
+  // Check for day keyword
+  if ($arg1 !== "day" && $arg1 !== "month") {
+    return FALSE;
+  }
+
+  // Check for a date
+  $time = strtotime($arg2);
+  if (is_int($time)) {
+    return TRUE;
+  }
+}
+
+
+/**
  * hook_field_views_data_alter
  * hook_field_views_data_views_data_alter
  * hook_views_data_alter
@@ -15,27 +62,35 @@
  */
 
 /**
- * Alter all the things!
+ * Alter all the things! Change the events views and exhibition views to work
+ * with dates in the url as well as alter their default functionality.
  * @param  [type] $view [description]
  * @return [type]       [description]
  */
 function stanford_exhibition_events_takeover_views_pre_build(&$view) {
 
-    $path = current_path();
-    if (arg(0) !== "events" && arg(1) !== "upcoming-events") {
-      return;
-    }
+  $path = current_path();
+  if (arg(0) !== "events" && arg(1) !== "upcoming-events") {
+    return;
+  }
 
-    $args = _seset_check_args();
-    if($args) {
-      takeover_pre_build_with_args($view);
-    }
-    else {
-      takeover_pre_build_without_args($view);
-    }
+  // Add some helper JS.
+  $settings = array(
+    'seet' => array(
+      'arg0' => arg(0),
+      'arg1' => arg(1)
+    )
+  );
+  drupal_add_js($settings, 'setting');
 
 
-
+  $args = _seset_check_args();
+  if($args) {
+    takeover_pre_build_with_args($view);
+  }
+  else {
+    takeover_pre_build_without_args($view);
+  }
 
 }
 
@@ -45,6 +100,7 @@ function stanford_exhibition_events_takeover_views_pre_build(&$view) {
  * @return [type]       [description]
  */
 function takeover_pre_build_with_args(&$view) {
+
   if ($view->name == "stanford_events_views" && $view->current_display == 'page') {
     takeover_stanford_events_views_page($view);
   }
@@ -56,6 +112,7 @@ function takeover_pre_build_with_args(&$view) {
   if ($view->name == "stanford_exhibitions" && $view->current_display == 'upcoming_exhibitions_block') {
     takeover_stanford_exhibitions_upcoming_exhibitions_block($view);
   }
+
 }
 
 /**
@@ -64,14 +121,17 @@ function takeover_pre_build_with_args(&$view) {
  * @return [type]       [description]
  */
 function takeover_pre_build_without_args(&$view) {
-  // nothing to see here.
+
+  if ($view->name == "stanford_events_exhibitions_calendar" && $view->current_display == 'events_exhibitions_calendar_block') {
+    takeover_stanford_exhibitions_events_exhibitions_calendar_block($view);
+  }
+
 }
 
 
-
-
 /**
- *
+ * Alter the dates supplied to the filters for the events page view based on
+ * params we get from the URL.
  * @param $view
  */
 function takeover_stanford_events_views_page(&$view) {
@@ -120,7 +180,7 @@ function takeover_stanford_exhibitions_current_exhibitions_block(&$view) {
 }
 
 /**
- *
+ * Alter the filters on the exhibitions block to match the params in the url.
  * @param $view
  */
 function takeover_stanford_exhibitions_upcoming_exhibitions_block(&$view) {
@@ -153,6 +213,37 @@ function takeover_stanford_exhibitions_upcoming_exhibitions_block(&$view) {
 }
 
 /**
+ * If we are on a calendar page we would like this mini calendar to match.
+ * @param  [type] $view [description]
+ * @return [type]       [description]
+ */
+function takeover_stanford_exhibitions_events_exhibitions_calendar_block(&$view) {
+
+  // Check to see if we are on an events page
+  $on_cal_page = stanford_exhibition_events_takeover_is_page_events_calendar('events');
+
+  // No events then just return
+  if (!$on_cal_page) {
+    return;
+  }
+
+  // We are on events page get date from URL.
+  $new_date_arg = arg(2);
+
+  // Could have day or not so adjust for that.
+  if (strlen($new_date_arg) >= 8) {
+    $new_date_arg = substr($new_date_arg, 0, -3);
+  }
+
+  // Set the arguments so when the view is built it gets built with the right
+  // date that is being viewed.
+  $view->set_arguments(array($new_date_arg));
+
+}
+
+
+
+/**
  * Change titles of the views on the upcoming events page when using the
  * mini calendar to control the dates.
  * @param  [type] $view [description]
@@ -160,7 +251,6 @@ function takeover_stanford_exhibitions_upcoming_exhibitions_block(&$view) {
  */
 function stanford_exhibition_events_takeover_views_post_render(&$view) {
 
-  // ARG ONLY CODEZ... ---------------------------------------------------------
   if (!_seset_check_args()) {
     return;
   }
@@ -278,6 +368,228 @@ function takeover_pre_view_stanford_events_calendar_page_day(&$view, &$display_i
     );
     $view->display_handler->set_option('footer', array('text' => $options));
 }
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function stanford_exhibition_events_takeover_theme_registry_alter(&$theme_registry) {
+
+  // Add our own preprocess functions so we can override the output...
+
+  // Cal mini for the numbers
+  array_unshift($theme_registry['calendar_mini']['preprocess functions'], 'stanford_exhibition_events_takeover_preprocess_calendar_mini');
+  array_unshift($theme_registry['calendar_mini']['process functions'], 'stanford_exhibition_events_takeover_process_calendar_mini');
+
+  // date_views_pager for the mini cal nav
+  array_unshift($theme_registry['date_views_pager']['preprocess functions'], 'stanford_exhibition_events_takeover_preprocess_date_views_pager');
+
+
+}
+
+/**
+ * [stanford_exhibition_events_takeover_preprocess_calendar_mini description]
+ * @return [type] [description]
+ */
+function stanford_exhibition_events_takeover_preprocess_calendar_mini(&$vars) {
+
+ //  //dpm($vars);
+ //  $view = $vars['view'];
+
+ //  // Only modify the exhibitions calendar.
+ //  if ($view->name !== "stanford_events_exhibitions_calendar" || $view->current_display !== "events_exhibitions_calendar_block") {
+ //    return;
+ //  }
+
+ //  $on_cal_page = stanford_exhibition_events_takeover_is_page_events_calendar('events');
+
+ //  if (!$on_cal_page) {
+ //    return;
+ //  }
+
+ //  $new_date_arg = substr(arg(2), 0, -3);
+ //  if ($view->args[0] == $new_date_arg) {
+ //    return;
+ //  }
+
+ //  // dpm($view->date_info);
+ //  // unset($view->date_info);
+ //  // $view->set_arguments(array($new_date_arg));
+ //  // $plugin = new calendar_plugin_style($view, $view->display);
+ //  // $plugin->render();
+
+ //  //template_preprocess_calendar_mini($vars);
+
+ //  $new_view = views_get_view('stanford_events_exhibitions_calendar');
+ //  $new_view->set_display('events_exhibitions_calendar_block');
+ //  $new_view->set_arguments(array($new_date_arg));
+ //  $new_view->execute();
+
+ // // $vars['rows'] = (!empty($new_view->result) || $new_view->style_plugin->even_empty()) ? $new_view->style_plugin->render($new_view->result) : '';
+ //  $vars['view'] = $new_view;
+
+}
+
+/**
+ * [stanford_exhibition_events_takeover_process_calendar_mini description]
+ * @return [type] [description]
+ */
+function stanford_exhibition_events_takeover_process_calendar_mini(&$vars) {
+  //dpm($vars);
+}
+
+/**
+ * [stanford_exhibition_events_takeover_preprocess_date_views_pager description]
+ * @param  [type] $vars [description]
+ * @return [type]       [description]
+ */
+function stanford_exhibition_events_takeover_preprocess_date_views_pager(&$vars) {
+  //dpm($vars);
+
+    $view = $vars['plugin']->view;
+
+    // Only modify the exhibitions calendar.
+    if ($view->name !== "stanford_events_exhibitions_calendar" || $view->current_display !== "events_exhibitions_calendar_block") {
+      return;
+    }
+
+    $date_info = $view->date_info;
+    $min_date = $date_info->min_date;
+    $granularity = !empty($date_info->granularity) ? $date_info->granularity : 'month';
+
+    $prev_date = clone($min_date);
+    date_modify($prev_date, '-1 ' . $granularity);
+    $next_date = clone($min_date);
+    date_modify($next_date, '+1 ' . $granularity);
+
+    $format = array('year' => 'Y', 'month' => 'Y-m', 'day' => 'Y-m-d');
+    $next_arg = date_format($next_date, $format[$granularity]);
+    $prev_arg = date_format($prev_date, $format[$granularity]);
+
+    $new_view = views_get_view('stanford_events_calendar');
+    $new_view->set_arguments($view->args);
+    $new_view->date_info = $view->date_info;
+
+
+    // Change the links
+    $vars['next_url'] = date_pager_url($new_view, NULL, $next_arg);
+    $vars['prev_url'] = date_pager_url($new_view, NULL, $prev_arg);
+
+    // Change the block title.
+     $link = FALSE;
+    // Month navigation titles are used as links in the block view.
+    if (!empty($date_info->mini) && $granularity == 'month') {
+      $link = TRUE;
+    }
+    $params = array(
+    'granularity' => $granularity,
+    'view' => $new_view,
+    'link' => $link,
+    );
+    $nav_title = theme('date_nav_title', $params);
+    $vars['nav_title'] = $nav_title;
+
+}
+
+
+// /**
+//  * When the Exhibitions & Events calendar is loaded we want to change the urls
+//  * of the things like the month heading to go to the events/month view instead
+//  * of the exhibitions views.
+//  * @param  [type] $vars [description]
+//  * @return [type]       [description]
+//  */
+// function stanford_exhibition_events_takeover_preprocess_calendar_mini(&$vars) {
+
+//   // $vars = array();
+
+// }
+
+// /**
+//  * When the Exhibitions & Events calendar is loaded we want to change the urls
+//  * of the things like the month heading to go to the events/month view instead
+//  * of the exhibitions views.
+//  * @param  [type] $vars [description]
+//  * @return [type]       [description]
+//  */
+// function stanford_exhibition_events_takeover_preprocess_date_views_pager(&$vars) {
+
+// // Nothing to see here. Please move along.
+
+// }
+
+
+// /**
+//  * Implements hook_theme().
+//  */
+// function stanford_exhibition_events_takeover_theme_registry_alter(&$theme_registry) {
+
+//   if (isset($theme_registry['date_views_pager'])) {
+//     $theme_registry['date_views_pager']['function'] = 'stanford_exhibition_events_takeover_theme_date_views_pager';
+//     $theme_registry['date_views_pager']['preprocess functions'] = array();
+//   }
+
+// }
+
+// /**
+//  * [stanford_exhibition_events_takeover_theme_date_nav_title description]
+//  * @param  [type] $params [description]
+//  * @return [type]         [description]
+//  */
+// function stanford_exhibition_events_takeover_theme_date_nav_title($params) {
+
+//   $old_view = $params['view'];
+//   if ($old_view->name !== "stanford_events_exhibitions_calendar" || $old_view->current_display !== "events_exhibitions_calendar_block") {
+//     return theme('date_views_pager', $params);
+//   }
+
+//   template_preprocess_date_views_pager($params);
+
+//   // Change up the view.
+//   $new_view = views_get_view('stanford_events_calendar');
+//   $new_view->set_display('block_1');
+//   $new_view->set_arguments($params['view']->args);
+//   $new_view->date_info = $params['view']->date_info;
+
+//   $params['view'] = $new_view;
+//   return $params;
+// }
+
+
+
+/**
+ * Make some layout tweaks.
+ * @param  [type] $context [description]
+ * @return [type]          [description]
+ */
+function stanford_exhibition_events_takeover_context_load_alter(&$context) {
+
+  // Swap out the events calendar block for the exhibitions & events calendar
+  // block.
+
+  if (
+    ($context->name === 'events_calendars' || $context->name === "events_upcoming")
+     && isset($context->reactions['block'])
+     ) {
+
+    // Remove original events block.
+    unset ($context->reactions['block']['blocks']['views-934c9b9d8d2d2f2b37f050dcd3bba83c']);
+
+    // Place the exhibitions and events one in its place
+    $context->reactions['block']['blocks']['views-008bead96b0bb35fa2fe6055a540af13'] = array(
+      'module' => 'views',
+      'delta' => '008bead96b0bb35fa2fe6055a540af13',
+      'region' => 'sidebar_second',
+      'weight' => '-10',
+    );
+  }
+}
+
+
+
+
+// /////////////////////////////////////////////////////////////////////////////
+// HELPERS
+// /////////////////////////////////////////////////////////////////////////////
 
 /**
  * Gets the args from the URL.
