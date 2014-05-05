@@ -29,8 +29,8 @@ function stanford_exhibition_layouts_context_default_contexts() {
         'views-0870b2f26d25cb15e901979bcc55506c' => array(
           'module' => 'views',
           'delta' => '0870b2f26d25cb15e901979bcc55506c',
-          'region' => 'content_lower',
-          'weight' => '-10',
+          'region' => 'content',
+          'weight' => '70',
         ),
       ),
     ),
