@@ -17,9 +17,17 @@ function stanford_exhibition_events_takeover_init() {
 
   $boolean = stanford_exhibition_events_takeover_is_page_events_calendar();
 
+  $mini = isset($_REQUEST['mini']);
+  $arg1 = arg(1);
+  $arg2 = ($mini) ? check_plain($_REQUEST['mini']) : arg(2);
+
   if ($boolean) {
-    $url = 'events/day/' . arg(2);
+    $url = 'events/' . $arg1 . '/' . $arg2;
     drupal_goto($url);
+  }
+
+  if ($mini && arg(0) == "events" && arg(1) == "month") {
+    drupal_goto('events/month/' . check_plain($_REQUEST['mini']));
   }
 
 }
