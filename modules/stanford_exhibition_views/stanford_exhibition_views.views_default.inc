@@ -213,6 +213,12 @@ function stanford_exhibition_views_views_default_views() {
   /* Display: Current Exhibitions Page */
   $handler = $view->new_display('page', 'Current Exhibitions Page', 'current_exhibitions');
   $handler->display->display_options['display_description'] = 'Current Exhibitions';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '7';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -1209,18 +1215,13 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="postcard-left">
-  <div>
-  <div class="event-image">[field_s_exh_thumb]</div>
-  </div>
-  <div>
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '  <div class="event-image">[field_s_exh_thumb]</div>
   <div class="event-title"><h3>[title]</h3></div>
   <div class="descriptor">
-  <div class="event-location">[field_s_exh_location]</div>
-  <div class="event-date-long">[field_s_exh_dates_duration_2]</div>
+    <div class="event-location">[field_s_exh_location]</div>
+    <div class="event-date-long">[field_s_exh_dates_duration_2]</div>
   </div>
-  </div>
-  </div>';
+ ';
   $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
