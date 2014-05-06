@@ -1207,6 +1207,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler = $view->new_display('block', 'Current Block - 1 Up', 'current_exhibitions_block_1_up');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Current Exhibitions';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['display_description'] = 'Current Block - 1 Up';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
@@ -1462,6 +1463,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler = $view->new_display('block', 'Upcoming Block - 1 Up', 'upcoming_block_one_up');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Upcoming Exhibitions';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['display_description'] = 'Upcoming Block - 1 Up';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
