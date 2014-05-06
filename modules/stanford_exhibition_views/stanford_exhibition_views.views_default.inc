@@ -170,7 +170,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['combine']['group'] = 1;
   $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
   $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
-  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search Keyword';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search by keyword';
   $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
   $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
   $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
@@ -196,7 +196,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_location_value']['group'] = 1;
   $handler->display->display_options['filters']['field_s_exh_location_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator_id'] = 'field_s_exh_location_value_op';
-  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Location';
+  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Search by location';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator'] = 'field_s_exh_location_value_op';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['identifier'] = 'field_s_exh_location_value';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['remember_roles'] = array(
@@ -257,7 +257,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['combine']['group'] = 1;
   $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
   $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
-  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search Keyword';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search by keyword';
   $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
   $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
   $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
@@ -283,7 +283,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_location_value']['group'] = 1;
   $handler->display->display_options['filters']['field_s_exh_location_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator_id'] = 'field_s_exh_location_value_op';
-  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Location';
+  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Search by location';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator'] = 'field_s_exh_location_value_op';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['identifier'] = 'field_s_exh_location_value';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['remember_roles'] = array(
@@ -401,7 +401,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_location_value']['operator'] = 'contains';
   $handler->display->display_options['filters']['field_s_exh_location_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator_id'] = 'field_s_exh_location_value_op';
-  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Location';
+  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Search by location';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator'] = 'field_s_exh_location_value_op';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['identifier'] = 'field_s_exh_location_value';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['remember_roles'] = array(
@@ -1054,7 +1054,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['combine']['operator'] = 'contains';
   $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
   $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
-  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search Keyword';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search by keyword';
   $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
   $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
   $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
@@ -1079,7 +1079,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_location_value']['operator'] = 'contains';
   $handler->display->display_options['filters']['field_s_exh_location_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator_id'] = 'field_s_exh_location_value_op';
-  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Location';
+  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Search by location';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator'] = 'field_s_exh_location_value_op';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['identifier'] = 'field_s_exh_location_value';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['remember_roles'] = array(
@@ -1152,7 +1152,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['combine']['operator'] = 'contains';
   $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
   $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
-  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search Keyword';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search by keyword';
   $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
   $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
   $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
@@ -1177,7 +1177,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_location_value']['operator'] = 'contains';
   $handler->display->display_options['filters']['field_s_exh_location_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator_id'] = 'field_s_exh_location_value_op';
-  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Location';
+  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Search by location';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator'] = 'field_s_exh_location_value_op';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['identifier'] = 'field_s_exh_location_value';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['remember_roles'] = array(
@@ -1416,7 +1416,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['combine']['group'] = 1;
   $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
   $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
-  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search Keyword';
+  $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search by keyword';
   $handler->display->display_options['filters']['combine']['expose']['operator'] = 'combine_op';
   $handler->display->display_options['filters']['combine']['expose']['identifier'] = 'combine';
   $handler->display->display_options['filters']['combine']['expose']['remember_roles'] = array(
@@ -1442,7 +1442,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['filters']['field_s_exh_location_value']['group'] = 1;
   $handler->display->display_options['filters']['field_s_exh_location_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator_id'] = 'field_s_exh_location_value_op';
-  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Location';
+  $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['label'] = 'Search by location';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['operator'] = 'field_s_exh_location_value_op';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['identifier'] = 'field_s_exh_location_value';
   $handler->display->display_options['filters']['field_s_exh_location_value']['expose']['remember_roles'] = array(
