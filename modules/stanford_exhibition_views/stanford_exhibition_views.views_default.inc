@@ -1212,7 +1212,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
-  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
   $handler->display->display_options['use_more_text'] = 'See All Current Exhibitions';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
@@ -1222,6 +1222,14 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: View area */
+  $handler->display->display_options['empty']['view']['id'] = 'view';
+  $handler->display->display_options['empty']['view']['table'] = 'views';
+  $handler->display->display_options['empty']['view']['field'] = 'view';
+  $handler->display->display_options['empty']['view']['label'] = 'upcoming random one up';
+  $handler->display->display_options['empty']['view']['empty'] = TRUE;
+  $handler->display->display_options['empty']['view']['view_to_insert'] = 'stanford_exhibitions:upcoming_block_one_up';
+  $handler->display->display_options['empty']['view']['inherit_arguments'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -1449,6 +1457,166 @@ function stanford_exhibition_views_views_default_views() {
     8 => 0,
   );
   $handler->display->display_options['path'] = 'exhibitions/search';
+
+  /* Display: Upcoming Block - 1 Up */
+  $handler = $view->new_display('block', 'Upcoming Block - 1 Up', 'upcoming_block_one_up');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Upcoming Exhibitions';
+  $handler->display->display_options['display_description'] = 'Upcoming Block - 1 Up';
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'See All Upcoming Exhibitions';
+  $handler->display->display_options['defaults']['link_display'] = FALSE;
+  $handler->display->display_options['link_display'] = 'upcoming_exhibitions';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Dates Duration */
+  $handler->display->display_options['fields']['field_s_exh_dates_duration']['id'] = 'field_s_exh_dates_duration';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration']['field'] = 'field_s_exh_dates_duration';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration']['label'] = '';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_dates_duration']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_exh_dates_duration']['settings'] = array(
+    'format_type' => 'stanford_month_date_year',
+    'fromto' => 'value',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Field: Content: Dates Duration */
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_1']['id'] = 'field_s_exh_dates_duration_1';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_1']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_1']['field'] = 'field_s_exh_dates_duration';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_1']['label'] = '';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_1']['settings'] = array(
+    'format_type' => 'stanford_month_date_year',
+    'fromto' => 'value2',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_s_exh_thumb']['id'] = 'field_s_exh_thumb';
+  $handler->display->display_options['fields']['field_s_exh_thumb']['table'] = 'field_data_field_s_exh_thumb';
+  $handler->display->display_options['fields']['field_s_exh_thumb']['field'] = 'field_s_exh_thumb';
+  $handler->display->display_options['fields']['field_s_exh_thumb']['label'] = '';
+  $handler->display->display_options['fields']['field_s_exh_thumb']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_thumb']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_exh_thumb']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_s_exh_thumb']['settings'] = array(
+    'image_style' => '3-col-header',
+    'image_link' => 'content',
+  );
+  /* Field: Content: Location */
+  $handler->display->display_options['fields']['field_s_exh_location']['id'] = 'field_s_exh_location';
+  $handler->display->display_options['fields']['field_s_exh_location']['table'] = 'field_data_field_s_exh_location';
+  $handler->display->display_options['fields']['field_s_exh_location']['field'] = 'field_s_exh_location';
+  $handler->display->display_options['fields']['field_s_exh_location']['label'] = '';
+  $handler->display->display_options['fields']['field_s_exh_location']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['trim_whitespace'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['max_length'] = '40';
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['strip_tags'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['alter']['html'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_location']['element_label_colon'] = FALSE;
+  /* Field: Content: Dates Duration */
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['id'] = 'field_s_exh_dates_duration_2';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['field'] = 'field_s_exh_dates_duration';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['label'] = '';
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['settings'] = array(
+    'format_type' => 'stanford_month_date_year',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+  );
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '  <div class="event-image">[field_s_exh_thumb]</div>
+  <div class="event-title"><h3>[title]</h3></div>
+  <div class="descriptor">
+    <div class="event-location">[field_s_exh_location]</div>
+    <div class="event-date-long">[field_s_exh_dates_duration_2]</div>
+  </div>
+ ';
+  $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = '';
+  $handler->display->display_options['fields']['edit_node']['element_type'] = 'div';
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['element_wrapper_type'] = 'div';
+  $handler->display->display_options['fields']['edit_node']['element_wrapper_class'] = 'edit-link';
+  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = FALSE;
+  $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Global: Random */
+  $handler->display->display_options['sorts']['random']['id'] = 'random';
+  $handler->display->display_options['sorts']['random']['table'] = 'views';
+  $handler->display->display_options['sorts']['random']['field'] = 'random';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'stanford_exhibition' => 'stanford_exhibition',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Dates Duration - end date (field_s_exh_dates_duration:value2) */
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['id'] = 'field_s_exh_dates_duration_value2';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['field'] = 'field_s_exh_dates_duration_value2';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['group'] = 1;
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['default_date'] = 'today';
+  $handler->display->display_options['block_description'] = 'Upcoming Exhibitions - 1 Up';
   $export['stanford_exhibitions'] = $view;
 
   $view = new view();

@@ -5,3 +5,20 @@
  */
 
 include_once 'stanford_exhibition_views.features.inc';
+
+
+/**
+ * Change title of the homepage block to use upcoming exhibitions when it uses
+ * the no results fallback view.
+ * @param  [type] $view [description]
+ * @return [type]       [description]
+ */
+function stanford_exhibition_views_views_post_render(&$view) {
+
+  if ($view->name == "stanford_exhibitions" && $view->current_display == "current_exhibitions_block_1_up") {
+    if ($view->total_rows == 0) {
+      $view->set_title('Upcoming Exhibitions');
+    }
+  }
+
+}
