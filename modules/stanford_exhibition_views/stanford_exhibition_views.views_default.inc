@@ -23,6 +23,7 @@ function stanford_exhibition_views_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Exhibitions';
+  $handler->display->display_options['css_class'] = 'views-row-lines';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -524,7 +525,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_month_date_year',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -683,7 +684,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_exh_dates_duration_2']['settings'] = array(
-    'format_type' => 'stanford_date_year_time',
+    'format_type' => 'stanford_month_date_year',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
@@ -1649,6 +1650,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['table'] = 'node';
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'field_data_field_s_exh_dates_duration.field_s_exh_dates_duration_value' => 'field_data_field_s_exh_dates_duration.field_s_exh_dates_duration_value',
   );
@@ -1810,6 +1812,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['table'] = 'node';
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['granularity'] = 'day';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'field_data_field_s_exh_dates_duration.field_s_exh_dates_duration_value' => 'field_data_field_s_exh_dates_duration.field_s_exh_dates_duration_value',
@@ -1868,6 +1871,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['table'] = 'node';
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['granularity'] = 'year';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
@@ -1907,6 +1911,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['arguments']['date_argument']['table'] = 'node';
   $handler->display->display_options['arguments']['date_argument']['field'] = 'date_argument';
   $handler->display->display_options['arguments']['date_argument']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['date_argument']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['date_argument']['add_delta'] = 'yes';
   $handler->display->display_options['arguments']['date_argument']['date_fields'] = array(
     'field_data_field_s_exh_dates_duration.field_s_exh_dates_duration_value' => 'field_data_field_s_exh_dates_duration.field_s_exh_dates_duration_value',
