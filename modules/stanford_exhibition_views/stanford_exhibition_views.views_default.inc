@@ -445,7 +445,7 @@ function stanford_exhibition_views_views_default_views() {
   /* Display: Current Exhibitions Block */
   $handler = $view->new_display('block', 'Current Exhibitions Block', 'current_exhibitions_block');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = '<none>';
+  $handler->display->display_options['title'] = 'Exhibitions';
   $handler->display->display_options['defaults']['use_more'] = FALSE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
@@ -459,12 +459,6 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: Unfiltered text */
-  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
-  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['label'] = 'Block Title';
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2>Current Exhibitions</h2>';
   $handler->display->display_options['defaults']['empty'] = FALSE;
   /* No results behavior: Global: View area */
   $handler->display->display_options['empty']['view']['id'] = 'view';
@@ -618,7 +612,7 @@ function stanford_exhibition_views_views_default_views() {
   /* Display: Upcoming Exhibitions Block */
   $handler = $view->new_display('block', 'Upcoming Exhibitions Block', 'upcoming_exhibitions_block');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = '<none>';
+  $handler->display->display_options['title'] = 'Exhibitions';
   $handler->display->display_options['display_description'] = 'Upcoming Exhibitions Block';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'upcoming_exhibitions';
@@ -626,12 +620,6 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['defaults']['header'] = FALSE;
-  /* Header: Global: Unfiltered text */
-  $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
-  $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['label'] = 'Block Title';
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2>Upcoming Exhibitions</h2>';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -905,7 +893,7 @@ function stanford_exhibition_views_views_default_views() {
   /* Display: Upcoming Attachment */
   $handler = $view->new_display('attachment', 'Upcoming Attachment', 'upcoming_exhibitions_attachment');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Upcoming Exhibitions';
+  $handler->display->display_options['title'] = 'Exhibitions';
   $handler->display->display_options['display_description'] = 'Upcoming Attachment';
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['defaults']['header'] = FALSE;
@@ -1381,6 +1369,8 @@ function stanford_exhibition_views_views_default_views() {
 
   /* Display: Search Exhibitions Page */
   $handler = $view->new_display('page', 'Search Exhibitions Page', 'exhibitions_search');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Search Exhibitions';
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'views-row-lines';
   $handler->display->display_options['display_description'] = 'Search  Exhibitions';
