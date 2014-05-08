@@ -26,11 +26,8 @@ function stanford_exhibition_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 0,
       ),
     ),
@@ -79,6 +76,50 @@ function stanford_exhibition_field_default_field_instances() {
       ),
       'type' => 'text_textarea_with_summary',
       'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-stanford_exhibition-field_exhibition_related_person'
+  $field_instances['node-stanford_exhibition-field_exhibition_related_person'] = array(
+    'bundle' => 'stanford_exhibition',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 24,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'node',
+    'field_name' => 'field_exhibition_related_person',
+    'label' => 'Related Person',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 18,
     ),
   );
 
@@ -495,10 +536,17 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 19,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'hidden',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'stanford_month_date_year',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 1,
       ),
     ),
     'entity_type' => 'node',
@@ -715,10 +763,11 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 20,
       ),
       'teaser' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'type' => 'text_default',
+        'weight' => 2,
       ),
     ),
     'ds_extras_field_template' => '',
@@ -997,9 +1046,13 @@ function stanford_exhibition_field_default_field_instances() {
         'weight' => 6,
       ),
       'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => 'content',
+          'image_style' => 'med-square',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
     ),
@@ -1128,8 +1181,50 @@ function stanford_exhibition_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-stanford_exhibition-field_s_image_additional'
+  $field_instances['node-stanford_exhibition-field_s_image_additional'] = array(
+    'bundle' => 'stanford_exhibition',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => '',
+          'delete' => '',
+          'description' => 0,
+          'edit' => '',
+          'view_mode' => 'stanford_large_scaled',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 23,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_s_image_additional',
+    'label' => 'Additional Images',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 23,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
+  t('Additional Images');
   t('Admission');
   t('Audience');
   t('Begin Time');
@@ -1150,6 +1245,7 @@ function stanford_exhibition_field_default_field_instances() {
   t('Location');
   t('Map URL');
   t('More Information');
+  t('Related Person');
   t('Sponsor');
   t('The dates in which this exhibition is active for. You may enter a start and end date for each day, spanning dates, or a combination of both.');
   t('The start and end date of the entire exhibition. This field is calculated automatically based on the dates provided in the dates field. ');

@@ -77,6 +77,39 @@ function stanford_exhibition_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_postcard_content|node|stanford_exhibition|teaser';
+  $field_group->group_name = 'group_postcard_content';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_exhibition';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = 'group_s_postcard';
+  $field_group->data = array(
+    'label' => 'Postcard Content',
+    'weight' => '4',
+    'children' => array(
+      0 => 'field_s_exh_location',
+      1 => 'field_s_exh_dates_duration',
+      2 => 'title',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Postcard Content',
+      'instance_settings' => array(
+        'classes' => 'group-postcard-content field-group-div postcard-content span9',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_postcard_content|node|stanford_exhibition|teaser'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_s_exh_advanced|node|stanford_exhibition|form';
   $field_group->group_name = 'group_s_exh_advanced';
   $field_group->entity_type = 'node';
@@ -122,6 +155,7 @@ function stanford_exhibition_field_group_info() {
       3 => 'field_s_exh_end_time',
       4 => 'field_s_exh_map_url',
       5 => 'field_s_exh_url',
+      6 => 'field_exhibition_related_person',
     ),
     'format_type' => 'div',
     'format_settings' => array(
@@ -168,6 +202,69 @@ function stanford_exhibition_field_group_info() {
     ),
   );
   $export['group_s_exhdates|node|stanford_exhibition|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_postcard_image|node|stanford_exhibition|teaser';
+  $field_group->group_name = 'group_s_postcard_image';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_exhibition';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = 'group_s_postcard';
+  $field_group->data = array(
+    'label' => 'Postcard Image',
+    'weight' => '3',
+    'children' => array(
+      0 => 'field_s_exh_thumb',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Postcard Image',
+      'instance_settings' => array(
+        'classes' => 'group-s-postcard-image field-group-div postcard-image span3',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_s_postcard_image|node|stanford_exhibition|teaser'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_s_postcard|node|stanford_exhibition|teaser';
+  $field_group->group_name = 'group_s_postcard';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'stanford_exhibition';
+  $field_group->mode = 'teaser';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Postcard',
+    'weight' => '3',
+    'children' => array(
+      0 => 'group_s_postcard_image',
+      1 => 'group_postcard_content',
+    ),
+    'format_type' => 'div',
+    'format_settings' => array(
+      'label' => 'Postcard',
+      'instance_settings' => array(
+        'classes' => 'group-s-postcard field-group-div postcard clear-both',
+        'description' => '',
+        'show_label' => '0',
+        'label_element' => 'h3',
+        'effect' => 'none',
+        'speed' => 'fast',
+      ),
+      'formatter' => 'open',
+    ),
+  );
+  $export['group_s_postcard|node|stanford_exhibition|teaser'] = $field_group;
 
   return $export;
 }
