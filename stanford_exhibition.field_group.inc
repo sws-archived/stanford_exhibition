@@ -247,8 +247,8 @@ function stanford_exhibition_field_group_info() {
     'label' => 'Postcard',
     'weight' => '3',
     'children' => array(
-      0 => 'group_s_postcard_image',
-      1 => 'group_postcard_content',
+      0 => 'group_postcard_content',
+      1 => 'group_s_postcard_image',
     ),
     'format_type' => 'div',
     'format_settings' => array(
