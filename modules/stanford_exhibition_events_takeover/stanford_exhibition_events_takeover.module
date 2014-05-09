@@ -192,7 +192,9 @@ function takeover_stanford_exhibitions_upcoming_exhibitions_block(&$view) {
   $minmax = _seset_get_minmax($args);
   $month_name = date("F", mktime(0, 0, 0, $args['month'], 10));
 
-  $view->header['area_text_custom']->options['content'] = "<h2>" . $month_name . " Exhibitions</h2>";
+  // $view->header['area_text_custom']->options['content'] = "<h2>" . $month_name . " Exhibitions</h2>";
+
+  $view->set_title($month_name . ' Exhibitions');
 
   $view->filter['field_s_exh_dates_duration_value']->value['value'] = $minmax['min'];
   $view->filter['field_s_exh_dates_duration_value']->value['min'] = null;
