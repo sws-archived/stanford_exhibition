@@ -344,6 +344,7 @@ function takeover_pre_view_stanford_events_calendar_page_day(&$view, &$display_i
     // Attach the exhibitions page_month view display to this as a footer attachement.
     // Start by getting and setting the view.
     // -------------------------------------------------------------------------
+
     $attachment = views_get_view('stanford_exhibitions_calendar');
     $attachment->set_arguments($args);
     $attachment->set_display('page_3');
@@ -358,6 +359,7 @@ function takeover_pre_view_stanford_events_calendar_page_day(&$view, &$display_i
       'tokenize' => 0,
     );
     $attachment->display_handler->set_option('header', array('text' => $options));
+    $attachment->pre_execute();
     $footer = $attachment->render();
 
     // -------------------------------------------------------------------------
