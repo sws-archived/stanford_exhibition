@@ -1203,7 +1203,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'See All Current Exhibitions';
+  $handler->display->display_options['use_more_text'] = 'See all current exhibitions';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'current_exhibitions';
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -1461,7 +1461,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['defaults']['use_more_always'] = FALSE;
   $handler->display->display_options['use_more_always'] = TRUE;
   $handler->display->display_options['defaults']['use_more_text'] = FALSE;
-  $handler->display->display_options['use_more_text'] = 'See All Upcoming Exhibitions';
+  $handler->display->display_options['use_more_text'] = 'See all upcoming exhibitions';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'upcoming_exhibitions';
   $handler->display->display_options['defaults']['pager'] = FALSE;
