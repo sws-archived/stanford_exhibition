@@ -614,6 +614,13 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Exhibitions';
   $handler->display->display_options['display_description'] = 'Upcoming Exhibitions Block';
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'See all upcoming exhibitions';
   $handler->display->display_options['defaults']['link_display'] = FALSE;
   $handler->display->display_options['link_display'] = 'upcoming_exhibitions';
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -1266,7 +1273,7 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['fields']['field_s_exh_thumb']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_exh_thumb']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_s_exh_thumb']['settings'] = array(
-    'image_style' => '3-col-header',
+    'image_style' => 'large-square',
     'image_link' => 'content',
   );
   /* Field: Content: Location */
@@ -1374,6 +1381,12 @@ function stanford_exhibition_views_views_default_views() {
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'views-row-lines';
   $handler->display->display_options['display_description'] = 'Search  Exhibitions';
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '15';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -1447,6 +1460,55 @@ function stanford_exhibition_views_views_default_views() {
     7 => 0,
     8 => 0,
   );
+  /* Filter criterion: Content: Dates Duration -  start date (field_s_exh_dates_duration) */
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['id'] = 'field_s_exh_dates_duration_value';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['field'] = 'field_s_exh_dates_duration_value';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['operator_id'] = 'field_s_exh_dates_duration_value_op';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['label'] = 'Find exhibitions after';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['operator'] = 'field_s_exh_dates_duration_value_op';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['identifier'] = 'field_s_exh_dates_duration_value';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+    11 => 0,
+    13 => 0,
+  );
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['default_date'] = 'first day of this month';
+  /* Filter criterion: Content: Dates Duration - end date (field_s_exh_dates_duration:value2) */
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['id'] = 'field_s_exh_dates_duration_value2';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['field'] = 'field_s_exh_dates_duration_value2';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['operator_id'] = 'field_s_exh_dates_duration_value2_op';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['label'] = 'Find exhibitions before';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['operator'] = 'field_s_exh_dates_duration_value2_op';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['identifier'] = 'field_s_exh_dates_duration_value2';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+    11 => 0,
+    13 => 0,
+  );
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['form_type'] = 'date_popup';
   $handler->display->display_options['path'] = 'exhibitions/search';
 
   /* Display: Upcoming Block - 1 Up */
