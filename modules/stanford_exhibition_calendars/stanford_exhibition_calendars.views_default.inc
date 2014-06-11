@@ -638,7 +638,7 @@ function stanford_exhibition_calendars_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['empty'] = TRUE;
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2>[month-replace]</h2>
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2 class="calendar-day-month">[month-replace]</h2>
   <h3>Events</h3>';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   /* Footer: Global: View area */
