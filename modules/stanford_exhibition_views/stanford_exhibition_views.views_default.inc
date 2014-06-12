@@ -1461,14 +1461,40 @@ function stanford_exhibition_views_views_default_views() {
     7 => 0,
     8 => 0,
   );
+  /* Filter criterion: Content: Dates Duration - end date (field_s_exh_dates_duration:value2) */
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['id'] = 'field_s_exh_dates_duration_value2_1';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['table'] = 'field_data_field_s_exh_dates_duration';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['field'] = 'field_s_exh_dates_duration_value2';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['group'] = 1;
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['expose']['operator_id'] = 'field_s_exh_dates_duration_value2_1_op';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['expose']['label'] = 'Find exhibitions after';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['expose']['operator'] = 'field_s_exh_dates_duration_value2_1_op';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['expose']['identifier'] = 'field_s_exh_dates_duration_value2_1';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    6 => 0,
+    5 => 0,
+    4 => 0,
+    3 => 0,
+    9 => 0,
+    7 => 0,
+    8 => 0,
+    11 => 0,
+    13 => 0,
+  );
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2_1']['default_date'] = 'today';
   /* Filter criterion: Content: Dates Duration -  start date (field_s_exh_dates_duration) */
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['id'] = 'field_s_exh_dates_duration_value';
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['table'] = 'field_data_field_s_exh_dates_duration';
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['field'] = 'field_s_exh_dates_duration_value';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['operator'] = '<=';
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['operator_id'] = 'field_s_exh_dates_duration_value_op';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['label'] = 'Find exhibitions after';
+  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['label'] = 'Find exhibitions before';
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['operator'] = 'field_s_exh_dates_duration_value_op';
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['identifier'] = 'field_s_exh_dates_duration_value';
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['expose']['remember_roles'] = array(
@@ -1485,31 +1511,6 @@ function stanford_exhibition_views_views_default_views() {
     13 => 0,
   );
   $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['form_type'] = 'date_popup';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value']['default_date'] = 'first day of this month';
-  /* Filter criterion: Content: Dates Duration - end date (field_s_exh_dates_duration:value2) */
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['id'] = 'field_s_exh_dates_duration_value2';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['table'] = 'field_data_field_s_exh_dates_duration';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['field'] = 'field_s_exh_dates_duration_value2';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['operator'] = '<=';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['operator_id'] = 'field_s_exh_dates_duration_value2_op';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['label'] = 'Find exhibitions before';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['operator'] = 'field_s_exh_dates_duration_value2_op';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['identifier'] = 'field_s_exh_dates_duration_value2';
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    6 => 0,
-    5 => 0,
-    4 => 0,
-    3 => 0,
-    9 => 0,
-    7 => 0,
-    8 => 0,
-    11 => 0,
-    13 => 0,
-  );
-  $handler->display->display_options['filters']['field_s_exh_dates_duration_value2']['form_type'] = 'date_popup';
   $handler->display->display_options['path'] = 'exhibitions/search';
 
   /* Display: Upcoming Block - 1 Up */
