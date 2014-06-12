@@ -22,7 +22,7 @@ function stanford_exhibition_calendars_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Calendar of Exhibitions & Events';
+  $handler->display->display_options['title'] = 'Calendar of Events & Exhibitions';
   $handler->display->display_options['css_class'] = 'views-row-lines';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['link_display'] = 'page_1';
@@ -151,7 +151,7 @@ function stanford_exhibition_calendars_views_default_views() {
   /* Display: Day */
   $handler = $view->new_display('page', 'Day', 'exhibitions_events_day_page');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Exhibitions & Events Calendar';
+  $handler->display->display_options['title'] = 'Calendar of Events & Exhibitions';
   $handler->display->display_options['defaults']['query'] = FALSE;
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
