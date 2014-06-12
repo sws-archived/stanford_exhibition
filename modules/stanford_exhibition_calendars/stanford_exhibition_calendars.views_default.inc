@@ -171,8 +171,14 @@ function stanford_exhibition_calendars_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['id'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2 class="calendar-day-month">[day-replace]</h2>
-  <h3 class="calendar-day-month-title">Events</h3>';
+  $handler->display->display_options['header']['area_text_custom']['empty'] = TRUE;
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2 class="calendar-day-month">[day-replace]</h2>';
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom_1']['id'] = 'area_text_custom_1';
+  $handler->display->display_options['header']['area_text_custom_1']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom_1']['field'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom_1']['label'] = 'Events Title';
+  $handler->display->display_options['header']['area_text_custom_1']['content'] = '<h3 class="calendar-day-month-title">Events</h3>';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   /* Footer: Global: View area */
   $handler->display->display_options['footer']['view']['id'] = 'view';
@@ -182,13 +188,6 @@ function stanford_exhibition_calendars_views_default_views() {
   $handler->display->display_options['footer']['view']['view_to_insert'] = 'stanford_events_exhibitions_calendar:stanford_events_exh_cal_day_exh';
   $handler->display->display_options['footer']['view']['inherit_arguments'] = TRUE;
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = '<p>No events currently scheduled.  See other <a href="/events">upcoming events</a>.</p>';
-  $handler->display->display_options['empty']['area']['format'] = 'content_editor_text_format';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -638,8 +637,12 @@ function stanford_exhibition_calendars_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['table'] = 'views';
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['empty'] = TRUE;
-  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2 class="calendar-day-month">[month-replace]</h2>
-  <h3>Events</h3>';
+  $handler->display->display_options['header']['area_text_custom']['content'] = '<h2 class="calendar-day-month">[month-replace]</h2>';
+  /* Header: Global: Unfiltered text */
+  $handler->display->display_options['header']['area_text_custom_1']['id'] = 'area_text_custom_1';
+  $handler->display->display_options['header']['area_text_custom_1']['table'] = 'views';
+  $handler->display->display_options['header']['area_text_custom_1']['field'] = 'area_text_custom';
+  $handler->display->display_options['header']['area_text_custom_1']['content'] = '<h3>Events</h3>';
   $handler->display->display_options['defaults']['footer'] = FALSE;
   /* Footer: Global: View area */
   $handler->display->display_options['footer']['view']['id'] = 'view';
@@ -810,13 +813,6 @@ function stanford_exhibition_calendars_views_default_views() {
   $handler->display->display_options['header']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['header']['area_text_custom']['content'] = '<h3 class="calendar-day-month-title">Exhibitions</h3>';
   $handler->display->display_options['defaults']['empty'] = FALSE;
-  /* No results behavior: Global: Text area */
-  $handler->display->display_options['empty']['area']['id'] = 'area';
-  $handler->display->display_options['empty']['area']['table'] = 'views';
-  $handler->display->display_options['empty']['area']['field'] = 'area';
-  $handler->display->display_options['empty']['area']['empty'] = TRUE;
-  $handler->display->display_options['empty']['area']['content'] = '<p>No events currently scheduled.  See other <a href="/events">upcoming events</a>.</p>';
-  $handler->display->display_options['empty']['area']['format'] = 'content_editor_text_format';
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
