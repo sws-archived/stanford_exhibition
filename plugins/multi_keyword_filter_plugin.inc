@@ -87,6 +87,14 @@ function feeds_tamper_multi_keyword_filter_validate(&$settings) {
   }
 }
 
+/**
+ * @param $result
+ * @param $item_key
+ * @param $element_key
+ * @param $field
+ * @param $settings
+ * @param $source
+ */
 function feeds_tamper_multi_keyword_filter_callback($result, $item_key, $element_key, &$field, $settings, $source) {
 
   $field_values = $field;
