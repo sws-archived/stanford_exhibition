@@ -50,8 +50,8 @@ function stanford_exhibition_feeds_importer_default() {
           'xpathparser:17' => 'locationText',
           'xpathparser:18' => 'mapUrl',
           'xpathparser:19' => 'sponsor',
-          'xpathparser:20' => 'Instance/isoEventDate[1]',
-          'xpathparser:21' => 'Instance/isoEventEndDate[last()]',
+          'xpathparser:20' => '',
+          'xpathparser:21' => '',
         ),
         'rawXML' => array(
           'xpathparser:6' => 0,
@@ -216,16 +216,6 @@ function stanford_exhibition_feeds_importer_default() {
           19 => array(
             'source' => 'xpathparser:19',
             'target' => 'field_s_exh_sponsor',
-            'unique' => FALSE,
-          ),
-          20 => array(
-            'source' => 'xpathparser:20',
-            'target' => 'field_s_exh_dates_duration:start',
-            'unique' => FALSE,
-          ),
-          21 => array(
-            'source' => 'xpathparser:21',
-            'target' => 'field_s_exh_dates_duration:end',
             'unique' => FALSE,
           ),
         ),
