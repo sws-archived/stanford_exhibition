@@ -79,3 +79,43 @@ function stanford_exhibition_form_node_form_alter(&$form, $form_state) {
     $form[FIELD_DATE_DURATION]['#access'] = user_access('alter dates duration field');
   }
 }
+
+/**
+ * @param $source
+ * @param $entity
+ * @param $target
+ * @param $value
+ */
+function stanford_exhibition_feeds_processor_targets_alter(&$targets, $entity_type, $bundle_name) {
+  if ($entity_type == "node" && $bundle_name == "stanford_exhibition") {
+    $targets['field_s_exh_date:start']['callback'] = "stanford_exhibition_feeds_date_set_target_preserve_past";
+    $targets['field_s_exh_date:end']['callback'] = "stanford_exhibition_feeds_date_set_target_preserve_past";
+  }
+}
+
+/**
+ * @param $source
+ * @param $entity
+ * @param $target
+ * @param $value
+ */
+function stanford_exhibition_feeds_date_set_target_preserve_past($source, &$entity, $target, $value) {
+  date_feeds_set_target($source, $entity, $target, $value);
+
+  if ($target !== "field_s_exh_date:end") {
+    return;
+  }
+
+  $original_entity = node_load($entity->nid, $entity->vid, TRUE);
+  $now = time();
+
+  // Add back in the past dates.
+  foreach ($original_entity->field_s_exh_date as $lang => $values) {
+    foreach ($values as $delta => $date_info) {
+      if ($date_info['value'] < $now) {
+        $entity->field_s_exh_date[$lang][] = $date_info;
+      }
+    }
+  }
+
+}
