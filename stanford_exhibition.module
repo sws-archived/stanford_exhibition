@@ -113,8 +113,7 @@ function stanford_exhibition_feeds_processor_targets_alter(&$targets, $entity_ty
  */
 function stanford_exhibition_feeds_date_set_target_preserve_past($source, &$entity, $target, $value) {
   // Mapping patch up for PHP error where mapping is now required.
-  global $language;
-  $mapping = array("language" => $language->language);
+  $mapping = array("language" => $entity->language);
   date_feeds_set_target($source, $entity, $target, $value, $mapping);
 
   if ($target !== "field_s_exh_date:end") {
