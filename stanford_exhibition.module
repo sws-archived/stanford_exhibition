@@ -62,7 +62,19 @@ function stanford_exhibition_node_presave($node) {
 
     $node->{FIELD_DATE_DURATION}[$node->language][0]['value'] = array_pop($start_dates);
     $node->{FIELD_DATE_DURATION}[$node->language][0]['value2'] = array_pop($end_dates);
-    $node->{FIELD_DATE_DURATION}[$node->language][0]['timezone_db'] = $node->{FIELD_DATE_DATES}[$node->language][0]['timezone_db'];
+
+    // This is a bandaid patch for updates. Sometimes the language is set to
+    // none and sometimes the language is set to en.
+    if (isset($node->{FIELD_DATE_DATES}[$node->language][0]['timezone_db'])) {
+      $node->{FIELD_DATE_DURATION}[$node->language][0]['timezone_db'] = $node->{FIELD_DATE_DATES}[$node->language][0]['timezone_db'];
+    }
+    else if (isset($node->{FIELD_DATE_DATES}['en'][0]['timezone_db'])) {
+      $node->{FIELD_DATE_DURATION}[$node->language][0]['timezone_db'] = $node->{FIELD_DATE_DATES}['en'][0]['timezone_db'];
+    }
+    else if (isset($node->{FIELD_DATE_DATES}[LANGUAGE_NONE][0]['timezone_db'])) {
+      $node->{FIELD_DATE_DURATION}[$node->language][0]['timezone_db'] = $node->{FIELD_DATE_DATES}[LANGUAGE_NONE][0]['timezone_db'];
+    }
+
 
   }
 
@@ -100,7 +112,9 @@ function stanford_exhibition_feeds_processor_targets_alter(&$targets, $entity_ty
  * @param $value
  */
 function stanford_exhibition_feeds_date_set_target_preserve_past($source, &$entity, $target, $value) {
-  date_feeds_set_target($source, $entity, $target, $value);
+  // Mapping patch up for PHP error where mapping is now required.
+  $mapping = array("language" => $entity->language);
+  date_feeds_set_target($source, $entity, $target, $value, $mapping);
 
   if ($target !== "field_s_exh_date:end") {
     return;
@@ -109,7 +123,13 @@ function stanford_exhibition_feeds_date_set_target_preserve_past($source, &$enti
   $original_entity = node_load($entity->nid, $entity->vid, TRUE);
   $now = time();
 
-  // Add back in the past dates.
+  // Nothing to preserve.
+  if (empty($original_entity->field_s_exh_date)) {
+    return;
+  }
+
+
+    // Add back in the past dates.
   foreach ($original_entity->field_s_exh_date as $lang => $values) {
     foreach ($values as $delta => $date_info) {
       if ($date_info['value'] < $now) {
